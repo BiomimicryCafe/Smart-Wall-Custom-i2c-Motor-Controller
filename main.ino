@@ -5,8 +5,23 @@
 Wire comm;
 
 void handleInput() {
- if (wire.available()) {
-   
+ while (wire.available()) {
+   switch (int(comm.read())) {
+    case 1:
+     digitalWrite(pumpPin, HIGH);
+     break;
+    case 2:
+     digitalWrite(pumpPin, LOW);
+     break;
+    case 3:
+     digitalWrite(solenoidPin, HIGH);
+     break;
+    case 4:
+     digitalWrite(solenoidPin, LOW);
+     break;
+    default:
+     break;
+   }
  }
 }
 
@@ -18,5 +33,5 @@ void setup() {
 }
 
 void loop() {
-
+ delay(100);
 }
