@@ -2,11 +2,10 @@
 #include "Wire.h"
 #define solenoidPin 10;
 #define pumpPin 9;
-Wire comm;
 
 void handleInput() {
- while (wire.available()) {
-   switch (int(comm.read())) {
+ while (Wire.available()) {
+   switch (int(Wire.read())) {
     case 1:
      digitalWrite(pumpPin, HIGH);
      break;
@@ -26,10 +25,10 @@ void handleInput() {
 }
 
 void setup() {
-  comm.begin(0x0f);
+  Wire.begin(0x0f);
   pinMode(solenoidPin, OUTPUT);
   pinMode(pumpPin, OUTPUT);
-  comm.onRecieve(handleInput);
+  Wire.onRecieve(handleInput);
 }
 
 void loop() {
